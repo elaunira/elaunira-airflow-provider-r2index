@@ -6,7 +6,7 @@ import json
 import os
 from typing import TYPE_CHECKING, Any
 
-from airflow.hooks.base import BaseHook
+from airflow.sdk.bases.hook import BaseHook
 
 if TYPE_CHECKING:
     from elaunira.r2index import R2IndexClient
