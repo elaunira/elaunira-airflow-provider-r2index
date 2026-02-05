@@ -175,7 +175,8 @@ class R2IndexHook(BaseHook):
         from airflow.providers.hashicorp.hooks.vault import VaultHook
 
         try:
-            vault_hook = VaultHook(vault_conn_id=vault_conn_id, vault_namespace=namespace)
+            # Note: namespace should be configured in the Vault connection's extra field
+            vault_hook = VaultHook(vault_conn_id=vault_conn_id)
             secret_cache: dict[str, dict[str, Any]] = {}
 
             def get_secret_value(config_key: str) -> str | None:
