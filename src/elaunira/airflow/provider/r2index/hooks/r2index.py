@@ -109,12 +109,12 @@ class R2IndexHook(BaseHook):
             "vault_conn_id": StringField(
                 lazy_gettext("Vault Connection ID"),
                 widget=BS3TextFieldWidget(),
-                description="Airflow Vault connection ID (e.g., openbao-ipregistry)",
+                description="Airflow Vault connection ID (e.g., openbao-elaunira)",
             ),
             "vault_namespace": StringField(
                 lazy_gettext("Vault Namespace"),
                 widget=BS3TextFieldWidget(),
-                description="OpenBao namespace (e.g., ipregistry/production)",
+                description="OpenBao namespace (e.g., elaunira/production)",
             ),
             "vault_secrets": TextAreaField(
                 lazy_gettext("Vault Secrets (JSON)"),
