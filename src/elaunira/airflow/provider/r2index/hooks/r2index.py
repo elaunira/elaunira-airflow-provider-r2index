@@ -25,7 +25,7 @@ class R2IndexHook(BaseHook):
         {
             "vault_conn_id": "openbao_default",
             "vault_namespace": "elaunira/production",
-            "vault_secrets": {
+            "vault_secrets_mapping": {
                 "r2index_api_url": "cloudflare/r2index#api-url",
                 "r2index_api_token": "cloudflare/r2index#api-token",
                 "r2_access_key_id": "cloudflare/r2/airflow#access-key-id",
@@ -37,7 +37,7 @@ class R2IndexHook(BaseHook):
         The vault_conn_id references an Airflow HashiCorp Vault connection
         configured with AppRole or other auth method.
 
-        vault_secrets format: "path#key" or "path" (uses config key as secret key)
+        vault_secrets_mapping format: "path#key" or "path" (uses config key as secret key)
         Required keys:
         - r2index_api_url
         - r2index_api_token
@@ -87,7 +87,7 @@ class R2IndexHook(BaseHook):
                 "password": "API token for direct connection",
                 "vault_conn_id": "openbao-myservice",
                 "vault_namespace": "myservice/production",
-                "vault_secrets": '{"r2index_api_url": "cloudflare/r2index#api-url", ...}',
+                "vault_secrets_mapping": '{"r2index_api_url": "cloudflare/r2index#api-url", ...}',
                 "r2_access_key_id": "Direct mode: R2 access key ID",
                 "r2_secret_access_key": "Direct mode: R2 secret access key",
                 "r2_endpoint_url": "https://account.r2.cloudflarestorage.com",
@@ -112,7 +112,7 @@ class R2IndexHook(BaseHook):
                 widget=BS3TextFieldWidget(),
                 description="OpenBao namespace (e.g., elaunira/production)",
             ),
-            "vault_secrets": StringField(
+            "vault_secrets_mapping": StringField(
                 lazy_gettext("Vault Secrets (JSON)"),
                 widget=BS3TextFieldWidget(),
                 description="JSON mapping of config keys to secret paths",
@@ -213,7 +213,7 @@ class R2IndexHook(BaseHook):
 
             vault_conn_id = extra.get("vault_conn_id")
             if vault_conn_id:
-                secrets_raw = extra.get("vault_secrets")
+                secrets_raw = extra.get("vault_secrets_mapping")
                 if not secrets_raw:
                     return None
                 if isinstance(secrets_raw, str):
