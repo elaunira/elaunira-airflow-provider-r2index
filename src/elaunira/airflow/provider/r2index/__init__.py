@@ -17,5 +17,15 @@ def get_provider_info():
                 "hook-class-name": "elaunira.airflow.provider.r2index.hooks.r2index.R2IndexHook",
             }
         ],
+        "task-decorators": [
+            {
+                "name": "r2index_upload",
+                "class-name": "elaunira.airflow.provider.r2index.decorators.r2index.r2index_upload",
+            },
+            {
+                "name": "r2index_download",
+                "class-name": "elaunira.airflow.provider.r2index.decorators.r2index.r2index_download",
+            },
+        ],
         "versions": [__version__],
     }
