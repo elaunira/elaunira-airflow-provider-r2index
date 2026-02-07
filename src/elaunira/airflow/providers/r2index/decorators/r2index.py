@@ -12,6 +12,7 @@ from elaunira.airflow.providers.r2index.operators.r2index import (
     R2IndexUploadOperator,
     UploadItem,
 )
+from elaunira.r2index.storage import R2TransferConfig
 
 if TYPE_CHECKING:
     from airflow.sdk.bases.decorator import TaskDecorator
@@ -96,6 +97,7 @@ class _R2IndexUploadDecoratedOperator(R2IndexUploadOperator):
         python_callable: Callable[..., UploadItem | list[UploadItem]],
         op_args: list[Any] | None = None,
         op_kwargs: dict[str, Any] | None = None,
+        transfer_config: R2TransferConfig | None = None,
         **kwargs: Any,
     ) -> None:
         self.python_callable = python_callable
@@ -103,6 +105,7 @@ class _R2IndexUploadDecoratedOperator(R2IndexUploadOperator):
         self.op_kwargs = op_kwargs or {}
         # items will be set in execute()
         kwargs["items"] = []
+        kwargs["transfer_config"] = transfer_config
         super().__init__(**kwargs)
 
     def execute(self, context: Any) -> list[dict[str, Any]]:
@@ -123,6 +126,7 @@ class _R2IndexDownloadDecoratedOperator(R2IndexDownloadOperator):
         python_callable: Callable[..., DownloadItem | list[DownloadItem]],
         op_args: list[Any] | None = None,
         op_kwargs: dict[str, Any] | None = None,
+        transfer_config: R2TransferConfig | None = None,
         **kwargs: Any,
     ) -> None:
         self.python_callable = python_callable
@@ -130,6 +134,7 @@ class _R2IndexDownloadDecoratedOperator(R2IndexDownloadOperator):
         self.op_kwargs = op_kwargs or {}
         # items will be set in execute()
         kwargs["items"] = []
+        kwargs["transfer_config"] = transfer_config
         super().__init__(**kwargs)
 
     def execute(self, context: Any) -> list[dict[str, Any]]:
