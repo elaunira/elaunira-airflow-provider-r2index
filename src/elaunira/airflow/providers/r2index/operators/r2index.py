@@ -129,7 +129,9 @@ class R2IndexUploadOperator(BaseOperator):
             tasks = [upload_one(item) for item in self.items]
             return await asyncio.gather(*tasks)
 
+        self.log.info("::group::Upload progress")
         results = asyncio.run(upload_all())
+        self.log.info("::endgroup::")
 
         # Check for errors
         errors = [r for r in results if r.get("status") == "error"]
@@ -220,7 +222,9 @@ class R2IndexDownloadOperator(BaseOperator):
             tasks = [download_one(item) for item in self.items]
             return await asyncio.gather(*tasks)
 
+        self.log.info("::group::Download progress")
         results = asyncio.run(download_all())
+        self.log.info("::endgroup::")
 
         # Check for errors
         errors = [r for r in results if r.get("status") == "error"]
