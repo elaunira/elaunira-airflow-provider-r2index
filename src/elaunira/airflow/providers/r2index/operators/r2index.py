@@ -47,7 +47,7 @@ class DownloadItem:
     destination: str
     source_filename: str
     source_path: str
-    source_version: str
+    source_version: str | None = None
     bucket: str | None = None
     overwrite: bool = True
     r2index_conn_id: str | None = None
