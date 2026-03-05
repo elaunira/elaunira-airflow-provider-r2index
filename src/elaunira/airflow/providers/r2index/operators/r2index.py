@@ -34,6 +34,8 @@ class UploadItem:
     source: str
     bucket: str | None = None
     create_checksum_files: bool = False
+    deprecated: bool | None = None
+    deprecation_reason: str | None = None
     extra: dict[str, Any] | None = None
     name: str | None = None
     r2index_conn_id: str | None = None
@@ -127,6 +129,8 @@ class R2IndexUploadOperator(BaseOperator):
                         tags=item.tags,
                         extra=item.extra,
                         create_checksum_files=item.create_checksum_files,
+                        deprecated=item.deprecated,
+                        deprecation_reason=item.deprecation_reason,
                         transfer_config=self.transfer_config,
                     )
                     return {"status": "success", "file_record": file_record.model_dump()}
