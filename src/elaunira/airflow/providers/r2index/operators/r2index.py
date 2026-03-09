@@ -39,6 +39,7 @@ class UploadItem:
     extra: dict[str, Any] | None = None
     name: str | None = None
     r2index_conn_id: str | None = None
+    subcategory: str | None = None
     tags: list[str] | None = None
 
 
@@ -120,6 +121,7 @@ class R2IndexUploadOperator(BaseOperator):
                         source=item.source,
                         category=item.category,
                         entity=item.entity,
+                        subcategory=item.subcategory,
                         extension=item.extension,
                         media_type=item.media_type,
                         destination_path=item.destination_path,
