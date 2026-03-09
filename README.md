@@ -32,7 +32,7 @@ Example Vault Secrets Mapping:
 ```json
 {
     "r2index_api_url": "cloudflare/r2index#api-url",
-    "r2index_api_token": "cloudflare/r2index#api-token",
+    "r2index_api_token": "cloudflare/r2index#api-write-token",
     "r2_access_key_id": "cloudflare/r2/e2e-tests#access-key-id",
     "r2_secret_access_key": "cloudflare/r2/e2e-tests#secret-access-key",
     "r2_endpoint_url": "cloudflare/r2/e2e-tests#endpoint-url"

@@ -27,7 +27,7 @@ class R2IndexHook(BaseHook):
             "vault_namespace": "elaunira/production",
             "vault_secrets_mapping": {
                 "r2index_api_url": "cloudflare/r2index#api-url",
-                "r2index_api_token": "cloudflare/r2index#api-token",
+                "r2index_api_token": "cloudflare/r2index#api-write-token",
                 "r2_access_key_id": "cloudflare/r2/airflow#access-key-id",
                 "r2_secret_access_key": "cloudflare/r2/airflow#secret-access-key",
                 "r2_endpoint_url": "cloudflare/r2/airflow#endpoint-url"
